@@ -1,0 +1,1 @@
+docker exec -it fmsim npm run migration -- --mode=production

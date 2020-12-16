@@ -1,0 +1,129 @@
+import { LitElement, html, css } from 'lit-element'
+import { connect } from 'pwa-helpers/connect-mixin.js'
+import gql from 'graphql-tag'
+
+import '@material/mwc-icon'
+
+import { store, client } from '@things-factory/shell'
+import { UPDATE_FAVORITES } from '@things-factory/fav-base'
+
+export class FavoriteTool extends connect(store)(LitElement) {
+  static get properties() {
+    return {
+      favorites: Array,
+      user: Object,
+      resourceId: String,
+      favored: Boolean,
+      acceptedPages: Array
+    }
+  }
+
+  static get styles() {
+    return css`
+      :host {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 0;
+      }
+
+      [favorable] {
+        opacity: 0.5;
+      }
+    `
+  }
+
+  render() {
+    var renderable = (this.acceptedPages || []).indexOf(this.page) !== -1
+
+    return renderable
+      ? html`
+          <mwc-icon @click=${this.onclick.bind(this)} ?favorable=${!this.favored}
+            >${this.favored ? 'star' : 'star_border'}</mwc-icon
+          >
+        `
+      : html``
+  }
+
+  updated(changes) {
+    if (changes.has('user')) {
+      this.refreshFavorites()
+    }
+
+    this.favored = (this.favorites || []).includes(this.resourceId)
+  }
+
+  stateChanged(state) {
+    this.page = state.route.page
+    this.favorites = state.favorite.favorites
+    this.user = state.auth.user
+    this.resourceId = state.route.resourceId
+  }
+
+  onclick(event) {
+    if (!this.resourceId) {
+      return
+    }
+
+    if (this.favored) {
+      this.removeFavorite(this.resourceId)
+    } else {
+      this.addFavorite(this.resourceId)
+    }
+  }
+
+  async refreshFavorites() {
+    if (!this.user || !this.user.email) {
+      return
+    }
+
+    const response = await client.query({
+      query: gql`
+        query {
+          myFavorites {
+            id
+            routing
+          }
+        }
+      `
+    })
+
+    store.dispatch({
+      type: UPDATE_FAVORITES,
+      favorites: response.data.myFavorites.map(favorite => favorite.routing)
+    })
+  }
+
+  async removeFavorite(routing) {
+    await client.query({
+      query: gql`
+        mutation {
+          deleteFavorite(routing: "${routing}") {
+            id
+            routing
+          }
+        }
+      `
+    })
+
+    this.refreshFavorites()
+  }
+
+  async addFavorite(routing) {
+    await client.query({
+      query: gql`
+        mutation {
+          createFavorite(favorite: {
+            routing: "${routing}"
+          }) {
+            id
+            routing
+          }
+        }
+      `
+    })
+
+    this.refreshFavorites()
+  }
+}
+
+customElements.define('favorite-tool', FavoriteTool)
