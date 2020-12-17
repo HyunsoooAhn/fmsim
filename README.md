@@ -1,16 +1,12 @@
 ## Build
 
-```
-# very first time, add base application from things-factory (ie. operato-board)
-$ yarn add @things-factory/operato-board
-```
 
 ```
 # install node_modules
 $ yarn install
 # data migration in development mode
 $ yarn run migration --mode=development
-# run application (@things-factory/fmsim) in development mode
+# run application (fmsim) in development mode
 $ DEBUG=things-factory:* yarn run serve:dev
 ```
 
@@ -21,7 +17,7 @@ $ yarn run migration --mode=production
 $ yarn build
 # build application (client module)
 $ yarn build:client
-# run application (@things-factory/fmsim) in production mode
+# run application (fmsim) in production mode
 $ yarn run serve
 ```
 
@@ -29,3 +25,28 @@ $ yarn run serve
 
 - URL : http://localhost:3000
 - default user and password : admin@hatiolab.com / admin
+
+## install
+
+- fmsim installation script
+
+  - create a folder for the application and change directory to your folder.
+  - the script will download a& install fmsim
+
+    ```
+    # install script for fmsim
+    cd
+    ```
+
+  - run 'start.sh' to start fmsim and 'stop.sh' to stop the running applicaton.
+  - on initial start, run 'migrate.sh' first to migrate database.
+
+  ```
+  # data migration
+  $ ./start.sh
+  $ ./migrate.sh
+  $ ./stop.sh
+
+  # restart with service port no. defualt uses 4000
+  $ ./start.sh 80
+  ```
