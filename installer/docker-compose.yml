@@ -9,7 +9,7 @@ services:
   app:
     build: .
     container_name: fmsim
-    image: hatiolab/fmsim:latest
+    image: hsahn8447/fmsim:latest
     privileged: true
     volumes:
       - ./logs:/app/logs

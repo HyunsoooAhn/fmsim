@@ -32,8 +32,8 @@
     "migration:revert": "node node_modules/typeorm/cli.js migration:revert",
     "stop:dev": "kill $(lsof -t -i:3000,3001)",
     "stop": "things-factory-stop fmsim",
-    "docker": "things-factory-dockerize hatiolab/fmsim:latest",
-    "docker:run": "docker run -it -p 4000:3000 hatiolab/fmsim:latest"
+    "docker": "things-factory-dockerize hsahn8447/fmsim:latest",
+    "docker:run": "docker run -it -p 4000:3000 hsahn8447/fmsim:latest"
   },
   "dependencies": {
     "@things-factory/apptool-ui": "^3.0.0-beta.85",

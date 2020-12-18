@@ -47,7 +47,7 @@ chmod u+x migrate.sh
 
 echo "HostPort=3000" > .env
 
-docker pull hatiolab/fmsim:latest
+docker pull hsahn8447/fmsim:latest
 
 docker pull hatiolab/operato-nginx:latest
 
