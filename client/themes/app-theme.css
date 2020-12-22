@@ -2,7 +2,9 @@ body {
   /* theme color */
   --primary-color-rgb: 34, 166, 167;
   --primary-color: rgb(var(--primary-color-rgb));
-  --secondary-color-rgb: 57, 78, 100;
+  /*--secondary-color-rgb: 57, 78, 100;*/
+  /*--secondary-color-rgb: 203, 103, 128;*/
+  --secondary-color-rgb: #e96780;
   --secondary-color: rgb(var(--secondary-color-rgb));
   --focus-color: var(--theme-white-color);
   --primary-background-color: var(--secondary-color);
