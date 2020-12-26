@@ -99,17 +99,9 @@ export class GroupInfo extends LitElement {
           font: var(--input-field-font);
         }
 
-        input,
-        table,
-        select,
-        textarea,
-        [custom-input] {
-          grid-column: span 8;
-
-          border: var(--input-field-border);
-          border-radius: var(--input-field-border-radius);
-          padding: var(--input-field-padding);
-          font: var(--input-field-font);
+        select {
+          text-transform: capitalize;
+          float: right;
         }
 
         input[type='checkbox'],
@@ -155,26 +147,7 @@ export class GroupInfo extends LitElement {
             align-self: end;
           }
 
-          span,
-          input,
-          table,
-          select,
-          textarea,
-          [custom-input] {
-            grid-column: span 12;
-          }
-          input[type='checkbox'],
-          input[type='radio'] {
-            justify-self: start;
-            align-self: center;
-            grid-column: span 1 / auto;
-          }
-
-          input[type='checkbox'] + label,
-          input[type='radio'] + label {
-            grid-column: span 11 / auto;
-            align-self: center;
-          }
+          
         }
       `
     ]

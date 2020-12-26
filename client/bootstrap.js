@@ -51,7 +51,8 @@ export default function bootstrap() {
       show: true,
       template: html` <menu-tools></menu-tools> `,
     },
-    position: VIEWPART_POSITION.NAVBAR,
+    // position: VIEWPART_POSITION.NAVBAR,
+    position: VIEWPART_POSITION.HEADERBAR,
   });
 
   store.subscribe(async () => {
@@ -66,7 +67,7 @@ export default function bootstrap() {
     updateViewpart("board-topmenu", {
       position:
         width == "WIDE"
-          ? VIEWPART_POSITION.NAVBAR
+          ? VIEWPART_POSITION.HEADERBAR
           : VIEWPART_POSITION.FOOTERBAR,
       level: VIEWPART_LEVEL.TOPMOST,
     });

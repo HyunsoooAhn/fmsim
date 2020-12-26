@@ -48,7 +48,8 @@ export class MenuTools extends connect(store)(LitElement) {
         }
 
         :host([width="WIDE"]) ul {
-          flex-direction: column;
+          flex-direction: row;
+          //가로로 수정
         }
 
         :host([width="WIDE"]) li {

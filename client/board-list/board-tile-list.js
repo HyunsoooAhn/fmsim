@@ -39,7 +39,7 @@ export default class BoardTileList extends LitElement {
         }
 
         [name] {
-          background-color: var(--board-renderer-name-background-color);
+          background-color: var(--primary-color);
           opacity:.8;
           margin-top: -35px;
           width: 100%;

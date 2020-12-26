@@ -10,7 +10,7 @@ export default class PlayGroupBar extends LitElement {
       css`
         :host {
           background-color: var(--group-bar-background-color);
-
+          color:var(--primary-color);
           overflow-x: hidden;
         }
 
@@ -30,7 +30,8 @@ export default class PlayGroupBar extends LitElement {
         }
 
         li[active] {
-          border-color: var(--group-bar-active-line-color);
+          /*border-color: var(--group-bar-active-line-color);*/
+          border-color: var(--primary-color-rgb);
         }
 
         li a {
@@ -38,12 +39,13 @@ export default class PlayGroupBar extends LitElement {
           padding: 5px 4px 1px 4px;
           text-decoration: none;
           font: var(--group-bar-textbutton);
-          color: rgba(255, 255, 255, 0.8);
+          color: var(--primary-color-rgb);
         }
 
         li[active] a {
           font: var(--group-bar-textbutton-active);
-          color: rgba(255, 255, 255, 1);
+          color: var(--group-bar-color);
+          /*color: rgba(255, 255, 255, 1);*/
         }
 
         li[padding] {

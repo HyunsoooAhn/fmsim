@@ -1,6 +1,10 @@
 body {
-  --menu-tools-background-color: var(--secondary-color);
+  /* --menu-tools-background-color: var(--secondary-color);
   --menu-tools-iconbutton-size: var(--icon-tiny-size);
   --menu-tools-color: rgba(255, 255, 255, 0.6);
-  --menu-tools-active-color: #fff;
+  --menu-tools-active-color: #fff; */
+  --menu-tools-background-color:  rgba(255, 255, 255, 0.6);
+  --menu-tools-iconbutton-size: var(--icon-tiny-size);
+  --menu-tools-active-color: var(--primary-color);
+  --menu-tools-color: var(--secondary-color);
 }

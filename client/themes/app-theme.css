@@ -1,10 +1,11 @@
 body {
   /* theme color */
-  --primary-color-rgb: 34, 166, 167;
+  /*--primary-color-rgb: 34, 166, 167;*/
+  --primary-color-rgb: 203, 103, 128;
   --primary-color: rgb(var(--primary-color-rgb));
-  /*--secondary-color-rgb: 57, 78, 100;*/
+  --secondary-color-rgb: 57, 78, 100;
   /*--secondary-color-rgb: 203, 103, 128;*/
-  --secondary-color-rgb: #e96780;
+  /*--secondary-color-rgb: #e96780;*/
   --secondary-color: rgb(var(--secondary-color-rgb));
   --focus-color: var(--theme-white-color);
   --primary-background-color: var(--secondary-color);
@@ -12,6 +13,7 @@ body {
   --main-section-background-color: #f4f7fb;
   --theme-white-color: #fff;
   --theme-black-color: rgba(0, 0, 0, 0.9);
+  --board-renderer-name-background-color: var(--primary-color-rgb);
 
   --focus-background-color: var(--primary-color);
   --primary-text-color: #111;

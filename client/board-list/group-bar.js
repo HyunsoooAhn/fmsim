@@ -1,6 +1,10 @@
+import { client } from '@things-factory/shell'
+import { i18next } from '@things-factory/i18n-base'
+
 import { css, html, LitElement } from 'lit-element'
 
 import ScrollBooster from 'scrollbooster'
+
 import '@material/mwc-icon'
 
 import { longpressable } from '@things-factory/utils'
@@ -14,6 +18,7 @@ export default class GroupBar extends LitElement {
 
           overflow-x: hidden;
         }
+       
 
         ul {
           display: flex;
@@ -26,12 +31,13 @@ export default class GroupBar extends LitElement {
         li {
           display: inline-block;
           padding: 0px 3px;
-
-          border-bottom: var(--group-bar-line);
+          /*그룹바 밑줄제거*/
+          /*border-bottom: var(--group-bar-line);*/
         }
 
         li[active] {
-          border-color: var(--group-bar-active-line-color);
+          /*border-color: var(--group-bar-active-line-color);*/
+          border-color: var(--primary-color);
         }
 
         li a {
@@ -39,12 +45,13 @@ export default class GroupBar extends LitElement {
           padding: 5px 4px 1px 4px;
           text-decoration: none;
           font: var(--group-bar-textbutton);
-          color: rgba(255, 255, 255, 0.8);
+          color: var(--primary-color-rgb);
         }
 
         li[active] a {
           font: var(--group-bar-textbutton-active);
-          color: rgba(255, 255, 255, 1);
+          color: var(--group-bar-color);
+          /*color: rgba(255, 255, 255, 1);*/
         }
 
         li[padding] {
@@ -62,6 +69,11 @@ export default class GroupBar extends LitElement {
         mwc-icon {
           vertical-align: middle;
         }
+
+        select {
+          text-transform: capitalize;
+          float: right;
+        }
       `
     ]
   }
@@ -75,15 +87,24 @@ export default class GroupBar extends LitElement {
   }
 
   render() {
+    console.log('groups : ' + this.groups);
+    console.log('groupId : ' + this.groupId);
+
     return html`
       <ul>
-        <li ?active=${this.groupId !== 0 && !this.groupId}>
-          <a href="${this.targetPage}"><mwc-icon>dashboard</mwc-icon></a>
-        </li>
+              
+        <select @change=${e => (this.groupId = e.target.value)} .value=${this.groupId}>
+          <option value="" ?selected=${'' == this.groupId}>favor</option>
+          ${(this.groups || []).map(
+          group => html`
+            <option .value=${group.id} ?active=${this.groupId === group.id} @long-press=${e => this._infoGroup(group.id)}>
+              ${group.name}
+            <!--<a href=${`${this.targetPage}/${group.id}`}>${group.name}</a>-->
+            </option>
+          `
+          )}
+        </select>
 
-        <li ?active=${this.groupId === 'favor'}>
-          <a href="${this.targetPage}/favor"><mwc-icon>star</mwc-icon></a>
-        </li>
 
         ${(this.groups || []).map(
           group => html`
@@ -93,11 +114,6 @@ export default class GroupBar extends LitElement {
           `
         )}
 
-        <li padding></li>
-
-        <li add>
-          <mwc-icon @click=${e => this._infoGroup()}>add</mwc-icon>
-        </li>
       </ul>
     `
   }

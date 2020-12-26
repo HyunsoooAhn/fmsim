@@ -36,7 +36,6 @@
     "docker:run": "docker run -it -p 4000:3000 hsahn8447/fmsim:latest"
   },
   "dependencies": {
-    "@things-factory/apptool-ui": "^3.0.0-beta.85",
     "@things-factory/attachment-ui": "^3.0.0-beta.85",
     "@things-factory/auth-ui": "^3.0.0-beta.85",
     "@things-factory/board-service": "^3.0.0-beta.85",
